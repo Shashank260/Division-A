@@ -1,6 +1,6 @@
 # 🚚 Last-Mile Fleet Route Optimiser (Team 09)
 
-An advanced, production-ready logistics optimization engine built specifically to solve the **Multi-Vehicle Capacitated Vehicle Routing Problem (CVRP)** for last-mile deliveries in Hubli, Karnataka. 
+A production-ready logistics optimization engine built specifically to solve the **Multi-Vehicle Capacitated Vehicle Routing Problem (CVRP)** for last-mile deliveries in Hubli, Karnataka. 
 
 This application combines operations research mathematics, open-source geospatial routing engines, and lightweight large language models (LLMs) to maximize fleet efficiency, reduce total fuel costs, and automate communication workflows.
 
@@ -25,7 +25,7 @@ A key architectural milestone of this project is its deliberate independence fro
 
 During the development phase, our engineering team evaluated commercial integrations but intentionally chose to build this platform entirely on top of the open-source **OpenStreetMap (OSM) ecosystem (OSRM & Nominatim)**. 
 
-### Why this is a superior engineering layout for production:
+### Why this is a better engineering layout:
 1. **No Corporate API Vendor Lock-in:** By running on OSRM, the routing engine is fully independent of corporate licensing policy shifts or breaking changes in closed-source SDKs.
 2. **Absolute Cost Optimization:** Commercial mapping APIs enforce aggressive, multi-tiered pay-per-request monetization schemes (charging separate micro-fees for every single geocoding look-up, matrix cells generated, and routing step calculated). This open-source stack can be containerized using Docker and self-hosted on private infrastructure, dropping external runtime API operational overhead to **zero**.
 3. **Privacy Compliance:** Customer coordinates and destination matrices are processed via an open-source pipeline instead of being streamed over to commercial aggregators, providing a robust layer of data privacy control.
@@ -55,3 +55,16 @@ cd teams/team-09
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
+```
+### 2. Configure Environment Variables
+Create a file named `.env` in the root of the `team-09` directory and insert your Gemini API Key configuration:
+```bash
+GEMINI_API_KEY=your_actual_gemini_api_key_here
+```
+### 3. Launch the backend server
+```bash
+uvicorn main:app --reload --port 8000
+```
+### 4. Run the StreamLit frontend
+```bash
+streamlit run app.py
